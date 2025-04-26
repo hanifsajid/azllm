@@ -1,0 +1,55 @@
+name: CI & Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install dependencies (prod only)
+        run: poetry install --no-interaction --without dev
+
+      - name: Run tests
+        run: poetry run pytest
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install all dependencies
+        run: poetry install --no-interaction
+
+      - name: Build Sphinx Docs
+        run: |
+          cd docs/source
+          poetry run sphinx-build -b html . ../build
+
+      - name: Deploy Docs to GitHub Pages
+        run: |
+          poetry run ghp-import -n -p -f docs/build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

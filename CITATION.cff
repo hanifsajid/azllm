@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "azLLM"
+authors:
+  - family-names: Sajid
+    given-names: Hanif
+  - family-names: Radford
+    given-names: Benjamin
+  - family-names: Dai
+    given-names: Yaoyao
+  - family-names: Windett
+    given-names: Jason
+version: "0.1.0"
+date-released: 2025-04-25
+repository-code: https://github.com/hanifsajid/azLLM
+license: MIT
+abstract: >
+  `azLLM` is a Python package designed to interface with various large language models (LLMs) 
+  from different AI providers. It offers a unified interface for interacting 
+  with models from providers like OpenAI, DeepSeek, Grok, Gemini, Meta's Llama, Anthropic,
+  Ollama, and others. The package allows for customizable configurations, batch generation,
+  parallel generation, error handling, and the ability 
+  to parse structured responses from different models.
+

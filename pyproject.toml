@@ -1,0 +1,43 @@
+[project]
+name = "azllm"
+version = "0.1.0"
+description = "A Python package that provides an easier user interface for multiple LLM providers."
+authors = [
+    {name = "Hanif Sajid"},
+    {name = "Bejamin Radford"},
+    {name = "Yaoyao Dai"},
+    {name = "Jason Windett"}
+]
+readme = "README.md"
+license = {text = 'MIT'}
+requires-python = ">=3.11"
+dependencies = [
+    "openai (>=1.76.0,<2.0.0)",
+    "pyyaml (>=6.0.2,<7.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)"
+]
+
+[project.urls]
+Homepage = "https://github.com/hanifsajid/azLLM"
+Repository = "https://github.com/hanifsajid/azLLM"
+
+
+[tool.poetry]
+packages = [{include = "azllm", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+sphinx = "^8.2.3"
+sphinx-autodoc-typehints = "^3.1.0"
+sphinx-rtd-theme = "^3.0.2"
+myst-parser = "^4.0.1"
+ghp-import = "^2.1.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

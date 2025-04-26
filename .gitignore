@@ -1,0 +1,47 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+
+# Python virtual environments
+env/
+venv/
+ENV/
+.venv/
+.poetry/
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Sphinx build directories
+docs/build/
+docs/_build/
+
+# Distribution and build directories
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
+
+# IDEs and text editor configurations
+.vscode/
+.idea/
+.sublime-project
+.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Log and temp files
+*.log
+*.tmp
+*.bak
+
+# Test output or coverage
+.coverage
+nosetests.xml
+*.cover
