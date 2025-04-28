@@ -1,12 +1,14 @@
 # azllm: A Unified LLM Interface for Multi-Provider Access
 
-![PyPI version](https://img.shields.io/pypi/v/azllm)
-![Python](https://img.shields.io/pypi/pyversions/azllm)
-![Downloads](https://img.shields.io/pypi/dm/azllm)
+[![PyPI version](https://img.shields.io/pypi/v/azllm)](https://pypi.org/project/azllm/)
+[![Python](https://img.shields.io/pypi/pyversions/azllm)](https://www.python.org/)
+[![Downloads](https://img.shields.io/pypi/dm/azllm)](https://pypistats.org/packages/azllm)
+
+
 
 `azllm` is a Python package that provides a unified interface to work with multiple LLM providers including OpenAI, DeepSeek, Grok, Gemini, Meta's LLaMA, Anthropic, Ollama, and more.
 
-> NOTE: For advanced usage, see the `azllm` <a href= "https://hanifsajid.github.io/azllm" target="_blank">documentation</a> and/or [examples](./examples/).
+> NOTE: For advanced usage, see the `azllm` <a href="https://hanifsajid.github.io/azllm" target="_blank">documentation</a> and/or [examples](./examples/).
 ---
 ## Features
 
@@ -28,7 +30,7 @@
 - <a href="https://ai.google.dev/gemini-api/docs" target="_blank">Google's Gemini</a>
 - <a href="https://ollama.com" target="_blank">Ollama</a>
 
-**NOTE:**   If you would like to request support for additional LLMs, please open an issue on our <a href= "https://github.com/hanifsajid/azllm/issues" target="_blank">GitHub page</a>.
+**NOTE:**   If you would like to request support for additional LLMs, please open an issue on our <a href="https://github.com/hanifsajid/azllm/issues" target="_blank">GitHub page</a>.
 
 ## Installation
 
