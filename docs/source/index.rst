@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to azLLM Documentation
+Welcome to azllm Documentation
 ===============================
 
 .. toctree::
@@ -19,16 +19,16 @@ Welcome to azLLM Documentation
 Cite this Project
 -----------------
 
-If you use ``azLLM`` in your work, please cite it as:
+If you use ``azllm`` in your work, please cite it as:
 
 ::
 
-  @misc{azLLM,
-    title        = {azLLM},
+  @misc{azllm,
+    title        = {azllm},
     author       = {Hanif Sajid and Benjamin Radford and Yaoyao Dai and Jason Windett},
     year         = {2025},
     month        = apr,
-    version      = {0.1.0},
-    howpublished = {https://github.com/hanifsajid/azLLM},
+    version      = {0.1.1},
+    howpublished = {https://github.com/hanifsajid/azllm},
     note         = {MIT License}
      }

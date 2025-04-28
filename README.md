@@ -1,14 +1,12 @@
 # azllm: A Unified LLM Interface for Multi-Provider Access
 
-`azllm` is a Python package that provides a unified interface to work with multiple LLM providers including OpenAI, DeepSeek, Grok, Gemini, Meta's LLaMA, Anthropic, Ollama, and more.
-
-> NOTE: For advanced usage, see the full azLLM docuemntation and/or examples.
-
 ![PyPI version](https://img.shields.io/pypi/v/azllm)
 ![Python](https://img.shields.io/pypi/pyversions/azllm)
 ![Downloads](https://img.shields.io/pypi/dm/azllm)
 
+`azllm` is a Python package that provides a unified interface to work with multiple LLM providers including OpenAI, DeepSeek, Grok, Gemini, Meta's LLaMA, Anthropic, Ollama, and more.
 
+> NOTE: For advanced usage, see the `azllm` <a href= "https://hanifsajid.github.io/azllm" target="_blank">documentation</a> and/or [examples](./examples/).
 ---
 ## Features
 
