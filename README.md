@@ -1,6 +1,7 @@
 # azllm: A Unified LLM Interface for Multi-Provider Access
 
 [![PyPI version](https://img.shields.io/pypi/v/azllm)](https://pypi.org/project/azllm/)
+[![DOI](https://zenodo.org/badge/972978252.svg)](https://doi.org/10.5281/zenodo.15299641)
 [![Python](https://img.shields.io/pypi/pyversions/azllm)](https://www.python.org/)
 [![Downloads](https://img.shields.io/pypi/dm/azllm)](https://pypistats.org/packages/azllm)
 
