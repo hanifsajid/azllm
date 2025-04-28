@@ -1,7 +1,7 @@
 Configurations Management
 =========================
 
-The `aLLMConfigs` class enables you to **view, customize, and manage** model configurations used by `azLLM`.
+The `azLLMConfigs` class enables you to **view, customize, and manage** model configurations used by `azLLM`.
 
 You can work in two modes:
 

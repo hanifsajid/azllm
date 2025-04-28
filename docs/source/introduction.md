@@ -2,9 +2,9 @@
 Introduction
 =============
 
-## azLLM
+## azllm
 
-`azLLM` is a Python package designed to interface with various large language models (LLMs) from different AI providers. It offers a unified interface for interacting with models from providers like **OpenAI**, **DeepSeek**, **Grok**, **Gemini**, **Meta's Llama**, **Anthropic**, **Ollama**, and others. The package allows for customizable configurations, batch generation, parallel generation, error handling, and the ability to parse structured responses from different models.
+`azllm` is a Python package designed to interface with various large language models (LLMs) from different AI providers. It offers a unified interface for interacting with models from providers like **OpenAI**, **DeepSeek**, **Grok**, **Gemini**, **Meta's Llama**, **Anthropic**, **Ollama**, and others. The package allows for customizable configurations, batch generation, parallel generation, error handling, and the ability to parse structured responses from different models.
 
 ## Features
 
@@ -27,4 +27,4 @@ Introduction
 - <a href="https://ai.google.dev/gemini-api/docs" target="_blank">Google's Gemini</a>
 - <a href="https://ollama.com" target="_blank">Ollama</a>
 
-**NOTE:**   If you would like to request support for additional LLMs, please open a new issue on our <a href= "https://github.com/hanifsajid/azLLM/issues" target="_blank">GitHub page</a>.
+**NOTE:**   If you would like to request support for additional LLMs, please open a new issue on our <a href= "https://github.com/hanifsajid/azllm/issues" target="_blank">GitHub page</a>.

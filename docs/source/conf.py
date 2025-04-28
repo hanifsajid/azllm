@@ -11,10 +11,10 @@ import sys
 sys.path.insert(0, os.path.abspath('../../src'))
 
 
-project = 'azLLM'
+project = 'azllm'
 copyright = '2025, Hanif Sajid, Bejamin Radford, Yaoyao Dai, Jason Windett'
 author = 'Hanif Sajid, Bejamin Radford, Yaoyao Dai, Jason Windett'
-release = '0.1.0'
+release = '0.1.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

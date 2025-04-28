@@ -3,10 +3,10 @@ Set Up
 
 ## Installation
 
-You can install the `azLLM` package via pip:
+You can install the `azllm` package via pip:
 
 ```bash
-pip install azLLM
+pip install azllm
 ```
 
 ## Prerequisites

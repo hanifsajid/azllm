@@ -10,6 +10,7 @@ authors = [
 ]
 readme = "README.md"
 license = {text = 'MIT'}
+keywords = ["llm", "openai", "ollama", "grok", "anthropic", "deepseek", "local", "gemini", "parallel", "batch", "text generation"]
 requires-python = ">=3.11"
 dependencies = [
     "openai (>=1.76.0,<2.0.0)",
@@ -18,9 +19,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/hanifsajid/azLLM"
-Repository = "https://github.com/hanifsajid/azLLM"
-
+Homepage = "https://hanifsajid.github.io/azllm"
+Repository = "https://github.com/hanifsajid/azllm"
+doucmentation = "https://hanifsajid.github.io/azllm"
 
 [tool.poetry]
 packages = [{include = "azllm", from = "src"}]
