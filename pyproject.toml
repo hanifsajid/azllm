@@ -1,6 +1,6 @@
 [project]
 name = "azllm"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python package that provides an easier user interface for multiple LLM providers."
 authors = [
     {name = "Hanif Sajid"},
