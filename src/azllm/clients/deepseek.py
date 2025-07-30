@@ -158,7 +158,7 @@ class DeepSeekClient:
                         return SimpleNamespace(raw = response, parsed = parsed)
                     except (json.JSONDecodeError, ValidationError, ValueError) as e:
                         if attempt == max_retries:
-                            raise ValueError(f"Validation failed after {attempt} attempts: {e}")
+                            return SimpleNamespace(raw=response, parsed=None, error=str(e))
                         wait = random.uniform(1,2)
                         time.sleep(wait)
             else:

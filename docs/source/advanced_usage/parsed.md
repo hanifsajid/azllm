@@ -2,9 +2,10 @@ Structured Outputs (Parsed)
 ===========================
 
 - Natively, only the following models/providers support structured outputs: OpenAI, Grok, Gemini, Fireworks, and Ollama. 
-- `azllm` also supports structructed outputs using `response_format` for: DeepSeek and Anthropic. 
+- Structured outputs can also be enabled using `azllm` for: DeepSeek and Anthropic.
+    - If parsing into the Pydantic model fails (e.g. invalid structure or missing fields), the system automatically falls back to returning the raw unstructured response. 
 - To enable structured output parsing, set `parse=True`.
-- You must also provide a Pydantic class via `response_format` in kwargs to receive parsed outputs.
+- A `Pydantic` model passed via `response_format` in kwargs
 
 ```python
 from azllm import azLLM

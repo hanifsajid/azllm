@@ -2,9 +2,11 @@ from openai import OpenAI
 import os
 from typing import List, Dict, Any
 from azllm.base import UNIClient
+from azllm.utils import StructuredOutput
 from dotenv import load_dotenv
 load_dotenv()
 
+structuredoutput = StructuredOutput()
 
 DEFAULT_CONFIG = {'model': 'gemini-2.0-flash',
                   'system_message': 'You are an advanced AI assistant.',
@@ -48,8 +50,8 @@ class GeminiClient:
         self.system_message = self.parameters.get('system_message', DEFAULT_CONFIG['system_message']) 
         self.temperature = self.parameters.get('temperature', DEFAULT_CONFIG['temperature']) 
         self.max_tokens = self.parameters.get('max_tokens', DEFAULT_CONFIG['max_tokens']) 
-        self.frequency_penalty = self.parameters.get('frequency_penalty', DEFAULT_CONFIG['frequency_penalty']) 
-        self.presence_penalty = self.parameters.get('presence_penalty', DEFAULT_CONFIG['presence_penalty']) 
+        #self.frequency_penalty = self.parameters.get('frequency_penalty', DEFAULT_CONFIG['frequency_penalty']) 
+        #self.presence_penalty = self.parameters.get('presence_penalty', DEFAULT_CONFIG['presence_penalty']) 
         self.kwargs = self.parameters.get('kwargs', DEFAULT_CONFIG['kwargs'])
     
     @classmethod
@@ -110,9 +112,6 @@ class GeminiClient:
 
         # Temporary override (default behavior)
         system_message = kwargs.pop("system_message", self.system_message)
-
-  
-
         base_params = {
             "model": self.model,
             "messages": [
@@ -135,7 +134,6 @@ class GeminiClient:
                 return response.choices[0].message.content
         except Exception as e:
             raise RuntimeError(f"Error generating text: {str(e)}")
-
     
     def batch_generate(self, prompts: List[str], kwargs: List[dict] = None, parse: List[bool] = None) -> List[str]:
         """
