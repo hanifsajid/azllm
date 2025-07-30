@@ -12,7 +12,7 @@ Introduction
 - **Customizable Parameters**: Easily configure parameters like `temperature`, `max_tokens`, and more for each model.
 - **Batch Generation**: Generate responses for multiple prompts in a single function call.
 - **Parallel Generation**: Generate text in parallel using different clients and models for the same prompt.
-- **Parse Responses**: Handle different model responses with parsing support for those models that support it.
+- **Parse Responses**: Parse and structure model outputs using Pydantic for models that support structured outputs natively, as well as for DeepSeek and Anthropic 
 - **Error Handling**: Graceful error handling with informative messages in case of failures.
 - **Lazy Client Initialization**: Clients are initialized only when needed to optimize performance.
 - **Environment Configuration**: API keys and other secrets are managed via `.env` files.

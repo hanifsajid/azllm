@@ -1,7 +1,13 @@
 from openai import OpenAI
 import os
 from typing import List, Dict, Any
+from types import SimpleNamespace
 from azllm.base import UNIClient
+from azllm.utils import StructuredOutput
+from pydantic import ValidationError
+import json
+import time 
+import random
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -13,6 +19,8 @@ DEFAULT_CONFIG = {'model': 'claude-3-7-sonnet-20250219',
                   'frequency_penalty': 0,
                   'presence_penalty': 0,
                   'kwargs': {}}
+
+structuredoutput = StructuredOutput()
 
 class AnthropicClient:
     """
@@ -110,12 +118,20 @@ class AnthropicClient:
         # Temporary override (default behavior)
         system_message = kwargs.pop("system_message", self.system_message)
 
+        if parse:
+            response_format = kwargs.pop("response_format", "")
+            system_message = structuredoutput.format_system_message(response_format= response_format,
+                                                                    user_system_prompt= system_message)
+            user_message = {"role": "user", "content": prompt}
+            messages = [system_message] + [user_message]
+        else:
+            messages = [
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": prompt}]
+
         base_params = {
             "model": self.model,
-            "messages": [
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": prompt}
-            ],
+            "messages": messages,
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
             "frequency_penalty": self.frequency_penalty,
@@ -127,7 +143,20 @@ class AnthropicClient:
 
         try:
             if parse:
-                print("Anthropic does not support parse model (structured outputs).")
+                max_retries = 3
+                for attempt in range(1, max_retries + 1):
+                    try:
+                        response = client.chat.completions.create(**base_params)
+                        content = response.choices[0].message.content.strip()
+                        json_content = structuredoutput.extract_json(content)
+                        parsed = response_format.model_validate(json_content)
+                        return SimpleNamespace(raw = response, parsed = parsed)
+                    except (json.JSONDecodeError, ValidationError, ValueError) as e:
+                        if attempt == max_retries:
+                            raise ValueError(f"Validation failed after {attempt} attempts: {e}")
+                        wait = random.uniform(1,2)
+                        time.sleep(wait)
+            
             else:
                 response = client.chat.completions.create(**base_params)
                 return response.choices[0].message.content

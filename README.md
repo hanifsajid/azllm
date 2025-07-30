@@ -3,19 +3,18 @@
 [![PyPI version](https://img.shields.io/pypi/v/azllm)](https://pypi.org/project/azllm/)
 [![DOI](https://zenodo.org/badge/972978252.svg)](https://doi.org/10.5281/zenodo.15299641)
 [![Python](https://img.shields.io/pypi/pyversions/azllm)](https://www.python.org/)
-[![Downloads](https://img.shields.io/pypi/dm/azllm)](https://pypistats.org/packages/azllm)
-
 
 
 `azllm` is a Python package that provides a unified interface to work with multiple LLM providers including OpenAI, DeepSeek, Grok, Gemini, Meta's LLaMA, Anthropic, Ollama, and more.
 
-> NOTE: For advanced usage, see the `azllm` <a href="https://hanifsajid.github.io/azllm" target="_blank">documentation</a> and/or [examples](./examples/).
+> NOTE: For advanced usage, see the `azllm` <a href="https://hanifsajid.github.io/azllm" target="_blank">documentation</a> and/or <a href="https://github.com/hanifsajid/azllm/tree/main/examples" target="_blank">examples</a>.
 ---
 ## Features
 
 - One unified interface for all major LLM APIs
 - Batch and parallel prompt generation
-- Structured outputs (parsing) with <a href="https://docs.pydantic.dev/latest/" target="_blank"> Pydantic</a>
+- Structured outputs (parsing) with <a href="https://docs.pydantic.dev/latest/" target="_blank"> Pydantic</a> for models that support parsed outputs natively  
+- Structured outputs (parsing) with <a href="https://docs.pydantic.dev/latest/" target="_blank"> Pydantic</a> for DeepSeek and Anthropic  
 - Per-model configurations and lazy initialization
 - Clean error handling
 - `.env`-based API key management
@@ -116,7 +115,7 @@ MIT License
   author       = {Hanif Sajid and Benjamin Radford and Yaoyao Dai and Jason Windett},
   year         = {2025},
   month        = apr,
-  version      = {0.1.2},
+  version      = {0.1.3},
   howpublished = {https://github.com/hanifsajid/azllm},
   note         = {MIT License},
   abstract     = {azllm is a Python package designed to interface with various large language models (LLMs) from different AI providers. It offers a unified interface for interacting with models from providers like OpenAI, DeepSeek, Grok, Gemini, Meta's Llama, Anthropic, Ollama, and others. The package allows for customizable configurations, batch generation, parallel generation, error handling, and the ability to parse structured responses from different models.}

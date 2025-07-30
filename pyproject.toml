@@ -1,6 +1,6 @@
 [project]
 name = "azllm"
-version = "0.1.2"
+version = "0.1.3"
 description = "A Python package that provides an easier user interface for multiple LLM providers."
 authors = [
     {name = "Hanif Sajid"},
@@ -15,7 +15,7 @@ requires-python = ">=3.11"
 dependencies = [
     "openai (>=1.76.0,<2.0.0)",
     "pyyaml (>=6.0.2,<7.0.0)",
-    "python-dotenv (>=1.1.0,<2.0.0)"
+    "python-dotenv (>=1.1.0,<2.0.0)",
 ]
 
 [project.urls]

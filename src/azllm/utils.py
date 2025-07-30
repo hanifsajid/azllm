@@ -1,6 +1,9 @@
 import yaml
 import os
 from pathlib import Path
+import json
+from typing import Type, Optional
+from pydantic import BaseModel
 
 
 def load_custom_config(config_dir: str, config_file: str) -> dict:
@@ -95,6 +98,54 @@ def create_custom_file(config_dir_name: str, config_file_name: str, template_con
         print(f"The template YAML file already exists at {template_file}.")
 
 
+class StructuredOutput:
+    def _build_prompt(self, schema: Type[BaseModel]) -> str:
+        return (
+            "You are an API that returns structured data.\n"
+            "Return only a valid JSON object that matches this schema:\n"
+            f"{json.dumps(schema.model_json_schema(), indent=2)}\n"
+            "Do not include any extra text. Just the JSON."
+        )
+
+    def extract_json(self, text: str) -> dict:
+        """
+        Extracts a JSON object from text by tracking opening/closing braces.
+        Avoids relying on unsupported recursive regex (?R).
+        """
+        start = text.find("{")
+        if start == -1:
+            raise ValueError("No opening brace found in response.")
+
+        open_braces = 0
+        for i in range(start, len(text)):
+            if text[i] == "{":
+                open_braces += 1
+            elif text[i] == "}":
+                open_braces -= 1
+                if open_braces == 0:
+                    json_str = text[start:i + 1]
+                    try:
+                        return json.loads(json_str)
+                    except json.JSONDecodeError as e:
+                        raise ValueError(f"Invalid JSON: {e}")
+        raise ValueError("Could not find matching closing brace for JSON.")
+
+    def format_system_message(
+        self,
+        response_format: Type[BaseModel],
+        user_system_prompt: Optional[str] = None) -> dict:
+        """
+        Formats a system message combining a user prompt and a schema prompt.
+        """
+        structured_prompt = self._build_prompt(response_format)
+
+        if user_system_prompt:
+            combined_prompt = f"{user_system_prompt.strip()}\n\n{structured_prompt}"
+        else:
+            combined_prompt = structured_prompt
+
+        return {"role": "system", "content": combined_prompt}
+      
 
 template_content = {'openai':
                      {'models': [

@@ -1,10 +1,10 @@
 Structured Outputs (Parsed)
 ===========================
 
-- Currently, only the following models/providers support structured outputs:OpenAI, Grok, Gemini, Fireworks, and Ollama. 
-- The following models do not support structructed outputs using `response_format`: DeepSeek and Anthropic. 
-- Set `parse=True` to enable structured output for further processing.
-- You will also need to provide a Pydantic class in kwargs using `response_format` to get parsed outputs.
+- Natively, only the following models/providers support structured outputs: OpenAI, Grok, Gemini, Fireworks, and Ollama. 
+- `azllm` also supports structructed outputs using `response_format` for: DeepSeek and Anthropic. 
+- To enable structured output parsing, set `parse=True`.
+- You must also provide a Pydantic class via `response_format` in kwargs to receive parsed outputs.
 
 ```python
 from azllm import azLLM
@@ -25,7 +25,7 @@ class Capital(BaseModel):
 
 
 prompt = 'What is the captial of France?'
-generated_text = manager.generate_text('openai', prompt, kwargs={'response_format': Capital}, parse=True)
+generated_text = manager.generate_text('deepseek', prompt, kwargs={'response_format': Capital}, parse=True)
 str_output = generated_text.parsed.capital
 print(str_output)
 ```
