@@ -1,6 +1,6 @@
 from openai import OpenAI
 import os
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 from types import SimpleNamespace
 from azllm.base import UNIClient
 from azllm.utils import StructuredOutput
@@ -96,7 +96,7 @@ class AnthropicClient:
             self.client = OpenAI(api_key=self.get_api_key(), base_url="https://api.anthropic.com/v1/")
         return self.client
     
-    def generate_text(self, prompt: str, kwargs:dict = None, parse: bool = False) -> str:
+    def generate_text(self, prompt: str, kwargs:dict = None, parse: bool = False) -> Union[str, SimpleNamespace]:
         """
         Generates text based on a single prompt using the Anthropic API.
 
@@ -106,7 +106,7 @@ class AnthropicClient:
             parse (bool, optional): If True, attempts to parse the model's response (not supported by Anthropic).
 
         Returns:
-            str: The generated text response from the model.
+            Union[str, SimpleNamespace]: Generated text or parsed structured output with metadata.
 
         Raises:
             RuntimeError: If there is an error during text generation.
@@ -119,11 +119,14 @@ class AnthropicClient:
         system_message = kwargs.pop("system_message", self.system_message)
 
         if parse:
-            response_format = kwargs.pop("response_format", "")
-            system_message = structuredoutput.format_system_message(response_format= response_format,
+            response_format = kwargs.pop("response_format", None)
+            if response_format is None:
+                raise ValueError("response_format must be provided when parse=True")
+
+            formatted_system_message = structuredoutput.format_system_message(response_format= response_format,
                                                                     user_system_prompt= system_message)
             user_message = {"role": "user", "content": prompt}
-            messages = [system_message] + [user_message]
+            messages = [formatted_system_message] + [user_message]
         else:
             messages = [
                 {"role": "system", "content": system_message},
@@ -144,6 +147,7 @@ class AnthropicClient:
         try:
             if parse:
                 max_retries = 3
+                response = None
                 for attempt in range(1, max_retries + 1):
                     try:
                         response = client.chat.completions.create(**base_params)

@@ -1,6 +1,6 @@
 from openai import OpenAI
 import os
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 from azllm.base import UNIClient
 from azllm.utils import StructuredOutput
 from pydantic import ValidationError
@@ -100,7 +100,7 @@ class DeepSeekClient:
              self.client = OpenAI(api_key=self.get_api_key(), base_url="https://api.deepseek.com/v1",)
         return self.client
     
-    def generate_text(self, prompt: str, kwargs:dict = None, parse: bool = False) -> str:
+    def generate_text(self, prompt: str, kwargs:dict = None, parse: bool = False) -> Union[str, SimpleNamespace]:
         """
         Generate text based on a single prompt using the DeepSeek API.
 
@@ -123,11 +123,14 @@ class DeepSeekClient:
         system_message = kwargs.pop("system_message", self.system_message)
 
         if parse:
-            response_format = kwargs.pop("response_format", "")
-            system_message = structuredoutput.format_system_message(response_format= response_format,
+            response_format = kwargs.pop("response_format", None)
+            if response_format is None:
+                raise ValueError("response_format must be provided when parse=True")
+
+            formatted_system_message = structuredoutput.format_system_message(response_format= response_format,
                                                                     user_system_prompt= system_message)
             user_message = {"role": "user", "content": prompt}
-            messages = [system_message] + [user_message]
+            messages = [formatted_system_message] + [user_message]
         else:
             messages = [
                 {"role": "system", "content": system_message},
@@ -138,7 +141,6 @@ class DeepSeekClient:
             "messages": messages,
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
-            "stream": self.stream,
             "frequency_penalty": self.frequency_penalty,
             "presence_penalty": self.presence_penalty
         }
@@ -149,6 +151,7 @@ class DeepSeekClient:
         try:
             if parse:
                 max_retries = 3
+                response = None
                 for attempt in range(1, max_retries + 1):
                     try:
                         response = client.chat.completions.create(**base_params)
@@ -161,6 +164,7 @@ class DeepSeekClient:
                             return SimpleNamespace(raw=response, parsed=None, error=str(e))
                         wait = random.uniform(1,2)
                         time.sleep(wait)
+            
             else:
                 response = client.chat.completions.create(**base_params)
                 return response.choices[0].message.content
