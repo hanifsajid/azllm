@@ -9,7 +9,7 @@ authors:
     given-names: Yaoyao
   - family-names: Windett
     given-names: Jason
-version: "0.1.5"
+version: "0.1.6"
 date-released: 2025-04-25
 repository-code: https://github.com/hanifsajid/azllm
 license: MIT

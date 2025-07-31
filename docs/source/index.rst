@@ -28,7 +28,7 @@ If you use ``azllm`` in your work, please cite it as:
     author       = {Hanif Sajid and Benjamin Radford and Yaoyao Dai and Jason Windett},
     year         = {2025},
     month        = apr,
-    version      = {0.1.5},
+    version      = {0.1.6},
     howpublished = {https://github.com/hanifsajid/azllm},
     note         = {MIT License}
      }
